@@ -1,0 +1,235 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
+}
+
+.pomodoro {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 60px 80px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    transform: translate(-30%, -30%);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(30%, 30%);
+    opacity: 0.8;
+  }
+}
+
+.display {
+  display: block;
+  font-size: 96px;
+  font-weight: 300;
+  color: #2d3748;
+  margin: 40px 0 50px;
+  letter-spacing: 4px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.display.green {
+  color: rgb(1, 162, 1)
+}
+
+button {
+  padding: 14px 32px;
+  margin: 0 8px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.work-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(240, 147, 251, 0.4);
+}
+
+.work-btn:hover {
+  box-shadow: 0 12px 30px rgba(240, 147, 251, 0.6);
+  transform: translateY(-2px);
+}
+
+.break-btn {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+}
+
+.break-btn:hover {
+  box-shadow: 0 12px 30px rgba(79, 172, 254, 0.6);
+  transform: translateY(-2px);
+}
+
+.pause-btn {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(250, 112, 154, 0.4);
+}
+
+.pause-btn:hover {
+  box-shadow: 0 12px 30px rgba(250, 112, 154, 0.6);
+  transform: translateY(-2px);
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #fba193 0%, #f31515 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(240, 147, 251, 0.4);
+}
+
+.reset-btn:hover {
+  box-shadow: 0 12px 30px rgba(240, 147, 251, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Floating particles background */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+body::before {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+body::after {
+  bottom: 20%;
+  right: 15%;
+  animation-delay: -5s;
+  width: 400px;
+  height: 400px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(50px, -50px) rotate(90deg);
+  }
+  50% {
+    transform: translate(0, 50px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-50px, -25px) rotate(270deg);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    padding: 40px 30px;
+    border-radius: 20px;
+  }
+
+  .display {
+    font-size: 64px;
+    margin: 30px 0 40px;
+  }
+
+  button {
+    padding: 12px 24px;
+    font-size: 14px;
+    margin: 6px 4px;
+  }
+}
+
+/* Animation when timer ends */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.time-up {
+  animation: pulse 1s ease-in-out infinite;
+  color: #f5576c !important;
+}
