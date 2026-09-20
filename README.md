@@ -10,6 +10,8 @@ A simple and elegant Pomodoro timer application built with vanilla HTML, CSS, an
 - **Reset** - Clear the timer and start fresh
 - **Visual Feedback** - Color changes and animations when timer completes
 - **Responsive Design** - Works on desktop and mobile devices
+- **Status** - Check your work status
+- **Work Sessions** - Check your work sessions
 
 ## Getting Started
 
