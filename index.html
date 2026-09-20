@@ -9,8 +9,19 @@
 <body>
   <main class="pomodoro">
     <div class="container">
+      <div class="stats-container">
+        <div class="stat-card">
+          <p class="stat-label">Work Sessions</p>
+          <span class="stat-value work-sessions">0</span>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Status</p>
+          <span class="stat-value status">Ready</span>
+        </div>
+      </div>
       <button class="work-btn" type="button">Work</button>
-      <button class="break-btn" type="button">Break</button>
+      <button class="break-btn" type="button">Short Break</button>
+      <button class="break-btn" type="button">Long Break</button>
       <button class="pause-btn" type="button">Pause</button>
       <button class='reset-btn' type="button">Reset</button>
       <span class="display"></span>

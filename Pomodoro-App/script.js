@@ -3,11 +3,19 @@ const breakBtn = document.querySelector('.break-btn');
 const pauseBtn = document.querySelector('.pause-btn');
 const display = document.querySelector('.display');
 const resetBtn = document.querySelector('.reset-btn');
+const workSessions = document.querySelector('.work-sessions');
+const status = document.querySelector('.status');
+
 
 let timer;
 let isBreakTime = false;
+let workSession = 0;
 
 const render = (duration) => {
+  if (!isBreakTime) {
+    workSession++
+  }
+
   console.log('start timer')
   if (timer) {
     clearInterval(timer)
@@ -22,15 +30,16 @@ const render = (duration) => {
     if (minutes < 10) minutes = '0' + minutes;
     if (seconds < 10) seconds = '0' + seconds;
 
-    display.innerText = `${minutes} : ${seconds}`
+    display.innerText = `${minutes} : ${seconds}`;
+    workSessions.innerText = `${workSession}`
 
     if (duration === 0) {
       if (isBreakTime) {
         isBreakTime = false;
-        render(45 * 60);
+        render(5);
       } else {
         isBreakTime = true;
-        breakTime(10 * 60);
+        breakTime(10);
       }
       
       display.classList.toggle('green');
@@ -44,7 +53,7 @@ const render = (duration) => {
 const breakTime = () => {
   if (timer) {
     clearInterval(timer);
-    render(10 * 60);
+    render(10);
   } else return
 }
 
@@ -69,6 +78,7 @@ const pause = () => {
 };
 
 const reset = () => {
+  workSessions.innerText = '0';
   if (timer) {
     clearInterval(timer);
     display.innerText = '';
@@ -76,7 +86,7 @@ const reset = () => {
 }
 
 workBtn.addEventListener('click', () => {
-  render(45 * 60)
+  render(5)
   display.classList.remove('green');
 })
 
