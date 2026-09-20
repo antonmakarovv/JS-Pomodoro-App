@@ -6,15 +6,28 @@ const resetBtn = document.querySelector('.reset-btn');
 const workSessions = document.querySelector('.work-sessions');
 const status = document.querySelector('.status');
 
-
 let timer;
 let isBreakTime = false;
 let workSession = 0;
+let isClicked = false;
+let isResuming = false;
+let previousStatus = '';
+
 
 const render = (duration) => {
-  if (!isBreakTime) {
+  if (!isBreakTime && !isResuming) {
     workSession++
   }
+
+  if (!isResuming) {
+    if (!isBreakTime) {
+      status.innerText = 'Work';
+    } else {
+      status.innerText = 'Break';
+    }
+  }
+
+  isResuming = false;
 
   console.log('start timer')
   if (timer) {
@@ -51,25 +64,31 @@ const render = (duration) => {
 }
 
 const breakTime = () => {
+  isBreakTime = true;
   if (timer) {
     clearInterval(timer);
     render(10);
-  } else return
+  } else {
+    render(10);
+  }
 }
 
-let isClicked = false;
-const pause = () => {
-  if (timer) {
-    isClicked = isClicked ? false : true;
 
+const pause = () => {
+  isClicked = isClicked ? false : true;
+  if (timer) {
     if (isClicked) {
+      previousStatus = status.innerText;
       clearInterval(timer);
       pauseBtn.innerText = "play";
+      status.innerText = 'Pause'
     } else {
       const minutes = Number(display.innerText.split(":")[0]);
       const seconds = Number(display.innerText.split(":")[1]);
       const duration = minutes * 60 + seconds;
       pauseBtn.innerText = "pause";
+      status.innerText = previousStatus || 'Work';
+      isResuming = true;
       render(duration);
     }
   } else {
@@ -78,7 +97,9 @@ const pause = () => {
 };
 
 const reset = () => {
+  status.innerText = 'Ready'
   workSessions.innerText = '0';
+  workSession = 0;
   if (timer) {
     clearInterval(timer);
     display.innerText = '';
@@ -93,6 +114,7 @@ workBtn.addEventListener('click', () => {
 breakBtn.addEventListener('click', () => {
   breakTime()
   display.classList.add('green');
+  status.innerText = 'Break'
 })
 
 pauseBtn.addEventListener('click', () => {
