@@ -1,4 +1,4 @@
-![App Screenshot](screenshots/image.png.png?raw=true "App Screenshot")
+![App Screenshot](screenshots/image.png?raw=true "App Screenshot")
 
 # Pomodoro App
 
