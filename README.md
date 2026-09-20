@@ -1,3 +1,5 @@
+![App Screenshot](screenshots/image.png.png?raw=true "App Screenshot")
+
 # Pomodoro App
 
 A simple and elegant Pomodoro timer application built with vanilla HTML, CSS, and JavaScript.

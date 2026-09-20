@@ -49,10 +49,10 @@ const render = (duration) => {
     if (duration === 0) {
       if (isBreakTime) {
         isBreakTime = false;
-        render(5);
+        render(45 * 60);
       } else {
         isBreakTime = true;
-        breakTime(10);
+        breakTime(10 * 60);
       }
       
       display.classList.toggle('green');
@@ -67,9 +67,9 @@ const breakTime = () => {
   isBreakTime = true;
   if (timer) {
     clearInterval(timer);
-    render(10);
+    render(10 * 60);
   } else {
-    render(10);
+    render(10 * 60);
   }
 }
 
@@ -107,7 +107,7 @@ const reset = () => {
 }
 
 workBtn.addEventListener('click', () => {
-  render(5)
+  render(45 * 60)
   display.classList.remove('green');
 })
 
